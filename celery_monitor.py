@@ -16,6 +16,7 @@ r = redis.Redis(host=settings.REDIS_HOST, port=settings.REDIS_PORT, db=settings.
 
 def is_worker_stuck(worker_name: str, queue_name: str) -> bool:
     try:
+        logger.info(f"🔍 Inspecting the worker: {worker_name} for queue: {queue_name}...")
         inspector = celery_app.control.inspect(timeout=20)
         active = inspector.active() or {}
         reserved = inspector.reserved() or {}

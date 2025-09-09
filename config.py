@@ -34,16 +34,23 @@ def get_settings():
 WORKERS = {
     "audio_splitter_worker": {
         "queue": "audio_splitter_task_queue",
-        "docker_container": "celery_audio_splitter_worker",
-        "ssh_host": "worker-vm-ip",       # optional if using SSH
-        "ssh_user": "user",
-        "ssh_key": "/path/to/key.pem"
+        "docker_container": "audio-splitter-worker",
+        # "ssh_host": "57.155.90.3",       # optional if using SSH
+        # "ssh_user": "azureuser",
+        # "ssh_key": r"D:\vivasoft\stickler\pem_keys\stickler-dev-trie-service-vm_key.pem"
     },
-    "nlp_worker": {
-        "queue": "nlp_task_queue",
-        "docker_container": "celery_nlp_worker",
-        "ssh_host": "worker-vm-ip",
-        "ssh_user": "user",
-        "ssh_key": "/path/to/key.pem"
-    }
+    "transcriptor_worker": {
+        "queue": "transcription_task_queue",
+        "docker_container": "transcriptor-worker",
+        "ssh_host": "20.191.147.182",
+        "ssh_user": "azureuser",
+        "ssh_key": r"D:\vivasoft\stickler\pem_keys\stickler-dev-transcription-service-vm_key.pem"
+    },
+    "completion_notifier_worker": {
+        "queue": "process_completion_task_queue",
+        "docker_container": "completion-notifier-worker",
+        # "ssh_host": "57.155.90.3",       # optional if using SSH
+        # "ssh_user": "azureuser",
+        # "ssh_key": r"D:\vivasoft\stickler\pem_keys\stickler-dev-trie-service-vm_key.pem"
+    },
 }
